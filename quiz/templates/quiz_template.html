@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.category_name }} Quiz</title>
+</head>
+<body>
+    <div id="countdown">Time remaining: 10 seconds</div>
+
+    <script>
+      var timeRemaining = 10; // Initial time in seconds
+  
+      function updateCountdown() {
+        document.getElementById('countdown').innerHTML = 'Time remaining: ' + timeRemaining + ' seconds';
+      }
+  
+      function countdown() {
+        updateCountdown();
+        if (timeRemaining == 0) {
+          window.location.href = "{% url 'quiz_category_selection' %}";
+        } else {
+          timeRemaining--;
+          setTimeout(countdown, 1000);
+        }
+      }
+
+      window.onload = function() {
+        countdown();
+      };
+    </script>
+    <h1>{{ category.category_name }} Quiz</h1>
+    <form method="post" action="{% url 'submit_quiz' category.id %}">
+        {% csrf_token %}
+        {% for question in questions %}
+            <fieldset>
+                <legend>{{ question.question_text }}</legend>
+                {% for answer in question.answers.all %}
+                    <label>
+                        <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}">
+                        {{ answer.answer_text }}
+                    </label><br>
+                {% endfor %}
+            </fieldset>
+        {% endfor %}
+        <button type="submit">Submit Quiz</button>
+    </form>
+</body>
+</html>
