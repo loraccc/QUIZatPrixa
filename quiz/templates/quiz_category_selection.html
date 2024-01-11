@@ -6,7 +6,10 @@
     <title>Quiz Category Selection</title>
 </head>
 <body>
-    <h1>Choose a Category</h1>
+    <h1 style="display: block;">CAROL's QUIZ</h1>
+    <h2 style="text-align: center;color: rgb(166, 83, 255);border: 2px dotted black;">Choose a Category</h1>
+    <h3 style="text-align: center;color: rgb(235, 102, 102);border: 1px ;">Since all of Us are into leraning and growing in some sorts , choose your favorable subject and answer to get the highest score possibe . 
+    </h3>
     <ul>
         {% for category in categories %}
             <li><a href="{% url 'quiz_view' category.id %}">{{ category.category_name }}</a></li>

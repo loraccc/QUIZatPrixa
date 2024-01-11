@@ -6,7 +6,8 @@
     <title>{{ category.category_name }} Quiz</title>
 </head>
 <body>
-    <div id="countdown">Time remaining: 10 seconds</div>
+    <h2 style="color: red;font-weight: 700;">REMEMBER:</h2>
+    <div id="countdown" style="color: red;font-size: larger;font-family: cursive;">Time remaining: 10 seconds</div>
 
     <script>
       var timeRemaining = 10; // Initial time in seconds
@@ -43,7 +44,7 @@
                 {% endfor %}
             </fieldset>
         {% endfor %}
-        <button type="submit">Submit Quiz</button>
+        <button style="color: red;border: 3px solid black ;" type="submit">Submit Quiz</button>
     </form>
 </body>
 </html>
